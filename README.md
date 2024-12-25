@@ -11,7 +11,7 @@ This is a solution to the [FAQ accordion challenge on Frontend Mentor](https://w
 ### Links
 
 - My Github Project URL: [https://github.com/xgbdev/faq-accordion](https://github.com/xgbdev/faq-accordion)
-- Web deployed on Vercel: [URL](https://your-live-site-url.com)
+- Web deployed on Vercel: [https://faq-accordion-one-phi.vercel.app/](https://faq-accordion-one-phi.vercel.app/)
 
 ## My process
 
