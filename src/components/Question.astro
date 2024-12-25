@@ -1,0 +1,102 @@
+<article class="mx-4">
+    <header class="flex flex-row items-center justify-between my-6">
+        <h3 id="titlequestion" class="font-semibold text-[20px] hover:text-[#ac29eb] hover:cursor-pointer transition-all">
+            {Astro.props.name}
+        </h3>
+        <div class="hover:cursor-pointer">
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                id="plusicon"
+                class="mr-4 size-10"
+                width="30"
+                height="31"
+                fill="currentColor"
+                viewBox="0 0 30 31"
+                ><path
+                    fill="#AD28EB"
+                    d="M15 3.313A12.187 12.187 0 1 0 27.188 15.5 12.203 12.203 0 0 0 15 3.312Zm4.688 13.124h-3.75v3.75a.938.938 0 0 1-1.876 0v-3.75h-3.75a.938.938 0 0 1 0-1.875h3.75v-3.75a.938.938 0 0 1 1.876 0v3.75h3.75a.938.938 0 0 1 0 1.876Z"
+                ></path></svg>
+                <svg
+                    id="minusicon"
+                    class="hidden mr-4 size-10"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="30"
+                    height="31"
+                    fill="currentColor"
+                    viewBox="0 0 30 31"
+                    ><path
+                        fill="#301534"
+                        d="M15 3.313A12.187 12.187 0 1 0 27.188 15.5 12.2 12.2 0 0 0 15 3.312Zm4.688 13.124h-9.375a.938.938 0 0 1 0-1.875h9.374a.938.938 0 0 1 0 1.876Z"
+                    ></path></svg
+                >
+        </div>
+    </header>
+    <div>
+        <p
+            id="txtfaq"
+            class="hidden opacity-0 transition-all text-lg text-black/50 mx-4 my-8 font-medium"
+        >
+            <slot />
+        </p>
+    </div>
+</article>
+<script>
+    var isToggled = false;
+    const titleQ = document.querySelectorAll("#titlequestion");
+    const iconoplusElements = document.querySelectorAll("#plusicon");
+    const iconominusElements = document.querySelectorAll("#minusicon");
+    const txtfaqElements = document.querySelectorAll("#txtfaq");
+
+    titleQ.forEach((title, index) => {
+        title.addEventListener("click", () => {
+            if (isToggled) {
+                isToggled = false;
+                txtfaqElements[index].classList.remove("opacity-100");
+                txtfaqElements[index].classList.add("opacity-0");
+                iconominusElements[index].classList.add("hidden");
+                iconoplusElements[index].classList.remove("hidden");
+                setTimeout(() => {
+                    txtfaqElements[index].classList.add("hidden");
+                }, 100);
+            } else {
+                isToggled = true;
+                txtfaqElements[index].classList.remove("hidden");
+                iconoplusElements[index].classList.add("hidden");
+                iconominusElements[index].classList.remove("hidden");
+                setTimeout(() => {
+                    txtfaqElements[index].classList.remove("opacity-0");
+                    txtfaqElements[index].classList.add("opacity-100");
+                }, 100);
+            }
+        });
+    });
+
+    iconoplusElements.forEach((iconoplus, index) => {
+        const txtfaqq = txtfaqElements[index];
+        const iconominus = iconominusElements[index];
+
+        iconoplus?.addEventListener("click", () => {
+            isToggled = true;
+            txtfaqq?.classList.remove("hidden");
+            iconoplus?.classList.add("hidden");
+            iconominus?.classList.remove("hidden");
+            setTimeout(() => {
+                txtfaqq?.classList.remove("opacity-0");
+                txtfaqq?.classList.add("opacity-100");
+            }, 100);
+            console.log(isToggled);
+        });
+
+        iconominus?.addEventListener("click", () => {
+            isToggled = false;
+            txtfaqq?.classList.remove("opacity-100");
+            txtfaqq?.classList.add("opacity-0");
+            iconominus?.classList.add("hidden");
+            iconoplus?.classList.remove("hidden");
+            setTimeout(() => {
+                txtfaqq?.classList.add("hidden");
+            }, 100);
+            console.log(isToggled);
+        });
+    });
+</script>
